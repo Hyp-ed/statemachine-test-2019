@@ -158,29 +158,26 @@ bool Main::checkCriticalFailure()
   // check if any of the module has failed (except sensors)
   if (comms_data_.module_status == data::ModuleStatus::kCriticalFailure) {
     log_.ERR("STATE", "Critical failure caused by communications ");
-    hypedMachine.handleEvent(kCriticalFailure);
     criticalFailureFound = true;
     //return true
   }
   if (nav_data_.module_status == data::ModuleStatus::kCriticalFailure) {
     log_.ERR("STATE", "Critical failure caused by navigation ");
-    hypedMachine.handleEvent(kCriticalFailure);
-    f
+    criticalFailureFound = true;
     //return true;
   }
   if (motor_data_.module_status == data::ModuleStatus::kCriticalFailure) {
     log_.ERR("STATE", "Critical failure caused by motors ");
-    hypedMachine.handleEvent(kCriticalFailure);
     criticalFailureFound = true;
     //return true;
   }
   if (batteries_data_.module_status == data::ModuleStatus::kCriticalFailure) {
     log_.ERR("STATE", "Critical failure caused by batteries ");
-    hypedMachine.handleEvent(kCriticalFailure);
     criticalFailureFound = true;
     //return true;
   }
   if (criticalFailureFound){
+    hypedMachine.handleEvent(kCriticalFailure);
     return true;
   }
 
