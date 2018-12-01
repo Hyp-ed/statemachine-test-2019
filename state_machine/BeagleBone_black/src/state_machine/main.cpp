@@ -46,7 +46,7 @@ Main::Main(uint8_t id, Logger& log)
 void Main::run()
 {
   utils::System& sys = utils::System::getSystem();
-  bool* CriticalFailures = (bool*) malloc(4 * sizeof(bool)); // Array used to keep track of critical failures
+  
   while (sys.running_) {
     comms_data_     = data_.getCommunicationsData();
     nav_data_       = data_.getNavigationData();
@@ -154,34 +154,34 @@ bool Main::checkCommsCriticalFailure()
 
 bool Main::checkCriticalFailure()
 {
-
+  bool criticalFailureFound = false;
   // check if any of the module has failed (except sensors)
   if (comms_data_.module_status == data::ModuleStatus::kCriticalFailure) {
     log_.ERR("STATE", "Critical failure caused by communications ");
     hypedMachine.handleEvent(kCriticalFailure);
-    CriticalFailures[0] = true;
+    criticalFailureFound = true;
     //return true
   }
   if (nav_data_.module_status == data::ModuleStatus::kCriticalFailure) {
     log_.ERR("STATE", "Critical failure caused by navigation ");
     hypedMachine.handleEvent(kCriticalFailure);
-    CriticalFailures[1] = true;
+    f
     //return true;
   }
   if (motor_data_.module_status == data::ModuleStatus::kCriticalFailure) {
     log_.ERR("STATE", "Critical failure caused by motors ");
     hypedMachine.handleEvent(kCriticalFailure);
-    CriticalFailures[2] = true;
+    criticalFailureFound = true;
     //return true;
   }
   if (batteries_data_.module_status == data::ModuleStatus::kCriticalFailure) {
     log_.ERR("STATE", "Critical failure caused by batteries ");
     hypedMachine.handleEvent(kCriticalFailure);
-    CriticalFailures[3] = true;
+    criticalFailureFound = true;
     //return true;
   }
-  if (CriticalFailures[0]){
-
+  if (criticalFailureFound){
+    return true;
   }
 
 
