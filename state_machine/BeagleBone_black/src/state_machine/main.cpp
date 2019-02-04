@@ -108,7 +108,7 @@ bool Main::checkInitialised()
   if (comms_data_.module_status     == data::ModuleStatus::kInit &&
       nav_data_.module_status       == data::ModuleStatus::kInit &&
       motor_data_.module_status     == data::ModuleStatus::kInit &&
-      // sensors_data_.module_status   == data::ModuleStatus::kInit &&
+      //sensors_data_.module_status   == data::ModuleStatus::kInit &&
       batteries_data_.module_status == data::ModuleStatus::kInit) {
     log_.INFO("STATE", "all modules are initialised");
     hypedMachine.handleEvent(kInitialised);
@@ -201,7 +201,7 @@ bool Main::checkMaxDistanceReached()
   if (nav_data_.distance +
       nav_data_.braking_distance +
       20 >= comms_data_.run_length) {
-    log_.INFO("STATE", "Max distance reached");
+    log_.INFO("STATE", "max distance reached");
     log_.INFO("STATE", "current distance, braking distance: %f %f"
       , nav_data_.distance
       , comms_data_.run_length - nav_data_.braking_distance);
@@ -223,8 +223,15 @@ bool Main::checkOnExit()
 
 bool Main::checkFinish()
 {
-  // no implementation yet
-  return false;
+  //not moving and at end of tube, leniency of 20m
+  if (motor_data_.velocity_1 == 0 && motor_data_.velocity_2 == 0
+      && motor_data_.velocity_3 == 0 && motor_data_.velocity_4 == 0 
+      && (nav_data_.distance + 20 >= comms_data_.run_length)){
+        log_.INFO("STATE", "ready for collection");
+        hypedMachine.handleEvent(kFinish);
+        return true;
+      }
+  return false ;
 }
 
 bool Main::checkVelocityZeroReached()
