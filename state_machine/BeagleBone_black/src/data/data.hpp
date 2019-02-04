@@ -146,7 +146,7 @@ struct Battery {
 
 struct Batteries : public Module {
   static constexpr int kNumLPBatteries = 2;
-  static constexpr int kNumHPBatteries = 2;
+  static constexpr int kNumHPBatteries = 3;
 
   array<Battery, kNumLPBatteries> low_power_batteries;
   array<Battery, kNumHPBatteries> high_power_batteries;
@@ -166,6 +166,8 @@ struct Motors : public Module {
   int32_t velocity_2;
   int32_t velocity_3;
   int32_t velocity_4;
+  int32_t velocity_5;//new motor
+  int32_t velocity_6;//new motor
 };
 
 // -------------------------------------------------------------------------------------------------
