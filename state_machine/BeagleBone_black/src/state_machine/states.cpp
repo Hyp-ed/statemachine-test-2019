@@ -90,7 +90,7 @@ void Accelerating::react(HypedMachine &machine, Event event)
 
 void Decelerating::entry()
 {
-  state_ = state::kDecelerating;
+  state_ = state::kBraking;
 }
 
 void Decelerating::react(HypedMachine &machine, Event event)

@@ -59,7 +59,7 @@ enum State {
   kCalibrating,
   kReady,
   kAccelerating,
-  kDecelerating,
+  kBraking,
   kEmergencyBraking,
   kRunComplete,
   kFailureStopped,
