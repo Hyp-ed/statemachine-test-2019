@@ -101,7 +101,7 @@ void Main::run()
     } else if (state_.current_state == data::State::kAccelerating) {
       accelerateMotors();
 
-    } else if (state_.current_state == data::State::kDecelerating) {
+    } else if (state_.current_state == data::State::kDecelerating) { //Change to "kNominalBraking"
       decelerateMotors();
 
     } else if (state_.current_state == data::State::kRunComplete) {
@@ -278,8 +278,8 @@ void Main::accelerateMotors()
 
 void Main::decelerateMotors()
 {
-  log_.INFO("MOTOR", "Motor State: Deccelerating\n");
-  while (state_.current_state == data::State::kDecelerating) {
+  log_.INFO("MOTOR", "Motor State: Deccelerating\n"); //Change to 'Nominal Braking' ?
+  while (state_.current_state == data::State::kDecelerating) { //Change to kNominalBraking ?
     // Check for motors critical failure flag
     communicator_->healthCheck();
 
@@ -292,7 +292,7 @@ void Main::decelerateMotors()
     }
 
     // Otherwise step down motor velocity
-    log_.DBG2("MOTOR", "Motor State: Deccelerating\n");
+    log_.DBG2("MOTOR", "Motor State: Deccelerating\n"); //Change to " Nominal Braking"?
     data::Navigation nav_ = data_.getNavigationData();
     target_velocity_      = decelerationVelocity(nav_.velocity);
     communicator_->sendTargetVelocity(target_velocity_);
