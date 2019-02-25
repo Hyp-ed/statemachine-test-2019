@@ -61,7 +61,7 @@ int Main::sendState(State state)
     case data::kCalibrating      : state_code_ = 1; break;
     case data::kReady            : state_code_ = 2; break;
     case data::kAccelerating     : state_code_ = 3; break;
-    case data::kDecelerating     : state_code_ = 4; break;
+    case data::kNominalBraking     : state_code_ = 4; break;
     case data::kEmergencyBraking : state_code_ = 5; break;
     case data::kRunComplete      : state_code_ = 6; break;
     case data::kFailureStopped   : state_code_ = 7; break;
