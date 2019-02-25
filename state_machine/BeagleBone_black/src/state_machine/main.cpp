@@ -73,7 +73,7 @@ void Main::run()
         if (checkTimer())                break;
         if (checkMaxDistanceReached())   break;
         break;
-      case data::State::kDecelerating:
+      case data::State::kNominalBraking:
         if (checkCriticalFailure())      break;
         if (checkTimer())                break;
         if (checkVelocityZeroReached())  break;

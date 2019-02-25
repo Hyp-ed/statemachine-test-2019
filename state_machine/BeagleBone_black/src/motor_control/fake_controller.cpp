@@ -135,7 +135,7 @@ void FakeController::healthCheck()
   // to set critical_failure_ to true
   if (faulty_) {
     data::State state = data_.getStateMachineData().current_state;
-    if (state == data::State::kAccelerating || state == data::State::kDecelerating) {
+    if (state == data::State::kAccelerating || state == data::State::kNominalBraking) {
       if (fail_time_ <= (Timer::getTimeMicros() - start_time_) ) {
         critical_failure_ = true;
         log_.ERR("Fake-controller","fake critical failure");

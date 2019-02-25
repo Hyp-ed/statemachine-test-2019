@@ -77,7 +77,7 @@ class Accelerating : public State {
   virtual void entry() override;
 };
 
-class Decelerating : public State {
+class NominalBraking : public State {
  public:
   virtual void react(HypedMachine &machine, Event event) override;
   virtual void entry() override;

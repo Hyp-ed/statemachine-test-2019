@@ -82,18 +82,18 @@ void Accelerating::entry()
 void Accelerating::react(HypedMachine &machine, Event event)
 {
   if (event == kMaxDistanceReached) {
-    machine.transition(new(alloc_) Decelerating());
+    machine.transition(new(alloc_) NominalBraking());
   } else if (event == kCriticalFailure) {
     machine.transition(new(alloc_) EmergencyBraking());
   }
 }
 
-void Decelerating::entry()
+void NominalBraking::entry()
 {
-  state_ = state::kDecelerating;
+  state_ = state::kNominalBraking;
 }
 
-void Decelerating::react(HypedMachine &machine, Event event)
+void NominalBraking::react(HypedMachine &machine, Event event)
 {
   if (event == kVelocityZeroReached) {
     machine.transition(new(alloc_) RunComplete());

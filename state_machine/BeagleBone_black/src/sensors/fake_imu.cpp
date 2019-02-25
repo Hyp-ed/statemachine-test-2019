@@ -117,9 +117,9 @@ void FakeImu::getData(Imu* imu)
         prev_gyr_ = gyr_val_read_[gyr_count_];
       }
     }
-  } else if (state == data::State::kDecelerating) {
+  } else if (state == data::State::kNominalBraking) {
     if (!dec_started_) {
-      log_.INFO("Fake-IMUs", "Start decelerating...");
+      log_.INFO("Fake-IMUs", "Start NominalBraking...");
       dec_started_ = true;
       startDec();
     }

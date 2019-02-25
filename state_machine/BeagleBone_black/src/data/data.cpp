@@ -29,7 +29,7 @@ const char* states[num_states] = {
   "Calibrating",
   "Ready",
   "Accelerating",
-  "Decelerating", //Should this be changed to NominalBraking
+  "NominalBraking", //Should this be changed to NominalBraking
   "EmergencyBraking",
   "RunComplete",
   "FailureStopped",

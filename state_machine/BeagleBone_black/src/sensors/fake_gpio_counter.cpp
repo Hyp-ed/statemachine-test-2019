@@ -60,7 +60,7 @@ StripeCounter FakeGpioCounter::getStripeCounter()
   if (state == data::State::kAccelerating && !is_accelerating_) {
     ref_time_ = utils::Timer::getTimeMicros();
     is_accelerating_ = true;
-  } else if (state == data::State::kDecelerating && is_accelerating_) {
+  } else if (state == data::State::kNominalBraking && is_accelerating_) {
     ref_time_ = utils::Timer::getTimeMicros();
     is_accelerating_ = false;
   }
@@ -74,7 +74,7 @@ StripeCounter FakeGpioCounter::getStripeCounter()
         new_count--;
       }
       break;
-    case data::State::kDecelerating:
+    case data::State::kNominalBraking:
       if (timeout() && double_stripe_) {
         new_count++;
       }

@@ -144,7 +144,7 @@ class Navigation {
    * @brief Get the acceleration value
    *
    * @return NavigationType Returns the forward component of acceleration vector (negative when
-   *                        decelerating)
+   *                        NominalBraking)
    */
   NavigationType getAcceleration() const;
   /**

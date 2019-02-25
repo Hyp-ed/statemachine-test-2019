@@ -101,7 +101,7 @@ void Main::run()
     } else if (state_.current_state == data::State::kAccelerating) {
       accelerateMotors();
 
-    } else if (state_.current_state == data::State::kDecelerating) { //Change to "kNominalBraking"
+    } else if (state_.current_state == data::State::kNominalBraking) { //Change to "kNominalBraking"
       decelerateMotors();
 
     } else if (state_.current_state == data::State::kRunComplete) {
@@ -279,7 +279,7 @@ void Main::accelerateMotors()
 void Main::decelerateMotors()
 {
   log_.INFO("MOTOR", "Motor State: Deccelerating\n"); //Change to 'Nominal Braking' ?
-  while (state_.current_state == data::State::kDecelerating) { //Change to kNominalBraking ?
+  while (state_.current_state == data::State::kNominalBraking) { //Change to kNominalBraking ?
     // Check for motors critical failure flag
     communicator_->healthCheck();
 
